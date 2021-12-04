@@ -2,7 +2,10 @@ package ua.edu.ucu.tempseries;
 
 import java.util.Arrays;
 
-import static java.lang.Math.*;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
+import static java.lang.Math.abs;
+
 
 public class TemperatureSeriesAnalysis {
     private double [] temperatureSeries;
@@ -17,7 +20,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        if (!this.validateTemps(temperatureSeries)){
+        if (!this.validateTemps(temperatureSeries)) {
             throw new IllegalArgumentException();
         }
         this.length = temperatureSeries.length;
@@ -25,7 +28,7 @@ public class TemperatureSeriesAnalysis {
         this.temperatureSeries = Arrays.copyOf(temperatureSeries, this.length);
     }
     
-    private boolean validateTemps(double [] temperatureSeries){
+    private boolean validateTemps(double [] temperatureSeries) {
         for (double temperature:temperatureSeries) {
             if (temperature < this.ABS_ZERO) {
                 return false;
@@ -34,8 +37,8 @@ public class TemperatureSeriesAnalysis {
         return true;
     }
 
-    private boolean isEmpty(){
-        if (this.length == 0){
+    private boolean isEmpty() {
+        if (this.length == 0) {
             return true;
         }
         return false;
@@ -77,7 +80,7 @@ public class TemperatureSeriesAnalysis {
         }
         double maxTemp = this.temperatureSeries[0];
         for (double temperature: this.temperatureSeries) {
-            if (temperature > maxTemp){
+            if (temperature > maxTemp) {
                 maxTemp = temperature;
             }
         }
@@ -97,15 +100,15 @@ public class TemperatureSeriesAnalysis {
         for (int i = 1; i < this.length; i++) {
             double currTemp = this.temperatureSeries[i];
             double diff = abs(currTemp - tempValue);
-            if ((diff == minDistance) && (closestTemp < 0) && (currTemp > 0)){
+            if ((diff == minDistance) && (closestTemp < 0) && (currTemp > 0)) {
                 minDistance = diff;
                 closestTemp = currTemp;
             }
-            else if (diff < minDistance){
+            else if (diff < minDistance) {
                 minDistance = diff;
                 closestTemp = currTemp;
             }
-            else{
+            else {
                 continue;
             }
         }
@@ -119,23 +122,23 @@ public class TemperatureSeriesAnalysis {
         boolean [] boolArr = new boolean[this.length];
         int boolArrTrueLen = 0;
         for (int i = 0; i < this.length; i++) {
-            if (this.temperatureSeries[i] < tempValue){
+            if (this.temperatureSeries[i] < tempValue) {
                 boolArr[i] = true;
                 boolArrTrueLen++;
             }
-            else{
+            else {
                 boolArr[i] = false;
             }
         }
 
-        if (boolArrTrueLen == 0){
+        if (boolArrTrueLen == 0) {
             return new double[0];
         }
 
         double [] lessTemps = new double[boolArrTrueLen];
         int counter = 0;
         for (int i = 0; i < this.length; i++) {
-            if (boolArr[i]){
+            if (boolArr[i]) {
                 lessTemps[counter] = this.temperatureSeries[i];
                 counter++;
             }
@@ -150,23 +153,23 @@ public class TemperatureSeriesAnalysis {
         boolean [] boolArr = new boolean[this.length];
         int boolArrTrueLen = 0;
         for (int i = 0; i < this.length; i++) {
-            if (this.temperatureSeries[i] >= tempValue){
+            if (this.temperatureSeries[i] >= tempValue) {
                 boolArr[i] = true;
                 boolArrTrueLen++;
             }
-            else{
+            else {
                 boolArr[i] = false;
             }
         }
 
-        if (boolArrTrueLen == 0){
+        if (boolArrTrueLen == 0) {
             return new double[0];
         }
 
         double [] lessTemps = new double[boolArrTrueLen];
         int counter = 0;
         for (int i = 0; i < this.length; i++) {
-            if (boolArr[i]){
+            if (boolArr[i]) {
                 lessTemps[counter] = this.temperatureSeries[i];
                 counter++;
             }
@@ -186,12 +189,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        if ((temps.length != 0) && (this.length == 0)){
+        if ((temps.length != 0) && (this.length == 0)) {
             this.expandTempList(1);
         }
 
         for (double temperature: temps) {
-            if (this.size == this.length){
+            if (this.size == this.length) {
                 this.expandTempList(2*this.length);
             }
             this.temperatureSeries[this.size] = temperature;
@@ -200,8 +203,8 @@ public class TemperatureSeriesAnalysis {
         return 0;
     }
 
-    private boolean expandTempList(int newLength){
-        if (newLength < this.length){
+    private boolean expandTempList(int newLength) {
+        if (newLength < this.length) {
             throw new IllegalArgumentException();
         }
         double [] expandedArr = new double[newLength];
