@@ -2,16 +2,12 @@ package ua.edu.ucu.tempseries;
 
 import java.util.Arrays;
 
-import static java.lang.Math.sqrt;
-import static java.lang.Math.pow;
-import static java.lang.Math.abs;
-
 
 public class TemperatureSeriesAnalysis {
+    static final double ABS_ZERO = -273;
     private double [] temperatureSeries;
     private int length;
     private int size;
-    static final double ABS_ZERO = -273;
 
     public TemperatureSeriesAnalysis() {
         this.temperatureSeries = new double[] {};
@@ -63,11 +59,11 @@ public class TemperatureSeriesAnalysis {
         double mean = this.average();
         double sumOfSquares = 0;
         for (double temperature: this.temperatureSeries) {
-            sumOfSquares += pow((temperature - mean), 2);
+            sumOfSquares += Math.pow((temperature - mean), 2);
         }
         double variance = sumOfSquares/this.length;
 
-        return sqrt(variance);
+        return Math.sqrt(variance);
     }
 
     public double min() {
@@ -96,10 +92,10 @@ public class TemperatureSeriesAnalysis {
             throw new IllegalArgumentException();
         }
         double closestTemp = this.temperatureSeries[0];
-        double minDistance = abs(closestTemp - tempValue);
+        double minDistance = Math.abs(closestTemp - tempValue);
         for (int i = 1; i < this.length; i++) {
             double currTemp = this.temperatureSeries[i];
-            double diff = abs(currTemp - tempValue);
+            double diff = Math.abs(currTemp - tempValue);
             if ((diff == minDistance) && (closestTemp < 0) && (currTemp > 0)) {
                 minDistance = diff;
                 closestTemp = currTemp;
