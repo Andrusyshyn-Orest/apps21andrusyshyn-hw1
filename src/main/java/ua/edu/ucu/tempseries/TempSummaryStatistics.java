@@ -5,7 +5,8 @@ public final class TempSummaryStatistics {
     private final double devTemp;
     private final double minTemp;
     private final double maxTemp;
-    public TempSummaryStatistics(double avgTemp, double devTemp, double minTemp, double maxTemp){
+    public TempSummaryStatistics(double avgTemp, double devTemp,
+                                 double minTemp, double maxTemp){
         this.avgTemp = avgTemp;
         this.devTemp = devTemp;
         this.minTemp = minTemp;
@@ -14,12 +15,12 @@ public final class TempSummaryStatistics {
 
     @Override
     public String toString() {
-        return "TempSummaryStatistics{" +
-                "avgTemp=" + this.avgTemp +
-                ", devTemp=" + this.devTemp +
-                ", minTemp=" + this.minTemp +
-                ", maxTemp=" + this.maxTemp +
-                '}';
+        return "TempSummaryStatistics{"
+                + "avgTemp=" + this.avgTemp
+                + ", devTemp=" + this.devTemp
+                + ", minTemp=" + this.minTemp
+                + ", maxTemp=" + this.maxTemp
+                + '}';
     }
 
     public double getAvgTemp() {
