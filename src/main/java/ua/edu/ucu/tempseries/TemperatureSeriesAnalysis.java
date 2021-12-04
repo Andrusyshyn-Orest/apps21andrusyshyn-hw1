@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class TemperatureSeriesAnalysis {
     static final double ABS_ZERO = -273;
+    static final double PRECISION = 0.00001;
     private double [] temperatureSeries;
     private int length;
     private int size;
@@ -96,7 +97,8 @@ public class TemperatureSeriesAnalysis {
         for (int i = 1; i < this.length; i++) {
             double currTemp = this.temperatureSeries[i];
             double diff = Math.abs(currTemp - tempValue);
-            if ((Math.abs(diff - minDistance) < 0.00001) && (closestTemp < 0) && (currTemp > 0)) {
+            if ((Math.abs(diff - minDistance) < this.PRECISION)
+                    && (closestTemp < 0) && (currTemp > 0)) {
                 minDistance = diff;
                 closestTemp = currTemp;
             }
