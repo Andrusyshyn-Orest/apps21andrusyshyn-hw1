@@ -15,17 +15,17 @@ public class TemperatureSeriesAnalysis {
         this.size = 0;
     }
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        if (!this.validateTemps(temperatureSeries)) {
+    public TemperatureSeriesAnalysis(double[] temperatureArr) {
+        if (!this.validateTemps(temperatureArr)) {
             throw new IllegalArgumentException();
         }
-        this.length = temperatureSeries.length;
+        this.length = temperatureArr.length;
         this.size = length;
-        this.temperatureSeries = Arrays.copyOf(temperatureSeries, this.length);
+        this.temperatureSeries = Arrays.copyOf(temperatureArr, this.length);
     }
-    
-    private boolean validateTemps(double [] temperatureSeries) {
-        for (double temperature:temperatureSeries) {
+
+    private boolean validateTemps(double [] temperatureArr) {
+        for (double temperature:temperatureArr) {
             if (temperature < this.ABS_ZERO) {
                 return false;
             }
@@ -59,7 +59,7 @@ public class TemperatureSeriesAnalysis {
         double mean = this.average();
         double sumOfSquares = 0;
         for (double temperature: this.temperatureSeries) {
-            sumOfSquares += Math.pow((temperature - mean), 2);
+            sumOfSquares += (temperature - mean) * (temperature - mean);
         }
         double variance = sumOfSquares/this.length;
 
