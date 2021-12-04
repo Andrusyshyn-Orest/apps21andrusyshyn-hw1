@@ -121,7 +121,7 @@ public class TemperatureSeriesAnalysis {
         for (int i = 0; i < this.length; i++) {
             if (this.temperatureSeries[i] < tempValue){
                 boolArr[i] = true;
-                boolArrTrueLen ++;
+                boolArrTrueLen++;
             }
             else{
                 boolArr[i] = false;
@@ -137,7 +137,7 @@ public class TemperatureSeriesAnalysis {
         for (int i = 0; i < this.length; i++) {
             if (boolArr[i]){
                 lessTemps[counter] = this.temperatureSeries[i];
-                counter ++;
+                counter++;
             }
         }
         return lessTemps;
@@ -152,7 +152,7 @@ public class TemperatureSeriesAnalysis {
         for (int i = 0; i < this.length; i++) {
             if (this.temperatureSeries[i] >= tempValue){
                 boolArr[i] = true;
-                boolArrTrueLen ++;
+                boolArrTrueLen++;
             }
             else{
                 boolArr[i] = false;
@@ -168,7 +168,7 @@ public class TemperatureSeriesAnalysis {
         for (int i = 0; i < this.length; i++) {
             if (boolArr[i]){
                 lessTemps[counter] = this.temperatureSeries[i];
-                counter ++;
+                counter++;
             }
         }
         return lessTemps;
