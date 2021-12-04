@@ -193,7 +193,7 @@ public class TemperatureSeriesAnalysisTest {
     @Test
     public void testFindClosestToValue() {
         // setup input data and expected result
-        double[] temperatureSeries = {-0.35, 0.1, 0.2};
+        double[] temperatureSeries = {-0.3, 0.1, 0.2};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double expResult = 0.1;
         // call tested method

@@ -96,7 +96,7 @@ public class TemperatureSeriesAnalysis {
         for (int i = 1; i < this.length; i++) {
             double currTemp = this.temperatureSeries[i];
             double diff = Math.abs(currTemp - tempValue);
-            if ((diff == minDistance) && (closestTemp < 0) && (currTemp > 0)) {
+            if ((Math.abs(diff - minDistance) < 0.00001) && (closestTemp < 0) && (currTemp > 0)) {
                 minDistance = diff;
                 closestTemp = currTemp;
             }
@@ -213,7 +213,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] getTemperatureSeries() {
-        return temperatureSeries;
+        return Arrays.copyOf(this.temperatureSeries, this.length);
     }
 
     public int getLength() {
