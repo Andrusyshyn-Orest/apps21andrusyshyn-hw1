@@ -335,4 +335,37 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expSize, actualSize, 0.00001);
 
     }
+
+    @Test
+    public void testSizeTest(){
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        seriesAnalysis.addTemps(1.0, 2.0 ,3.0, 4.0, 5.0, 6.0, 7.0);
+        double expMin = 1.0;
+        double expMax = 7.0;
+        double expAvg = 4.0;
+        double expDev = 2.0;
+        double expClosestToZero = 1.0;
+        double expClosestToValue = 1.0;    // value = 0.01;
+        double [] expLessThan = {1.0};     // value = 2.0;
+        double [] expGreaterThan = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0};     // value = -2.0;
+
+        double actualMin = seriesAnalysis.min();
+        double actualMax = seriesAnalysis.max();
+        double actualAvg = seriesAnalysis.average();
+        double actualDev = seriesAnalysis.deviation();
+        double actualClosestToZero = seriesAnalysis.findTempClosestToZero();
+        double actualClosestToValue = seriesAnalysis.findTempClosestToValue(0.01);
+        double [] actualLessThan = seriesAnalysis.findTempsLessThen(2.0);
+        double [] actualGreaterThan = seriesAnalysis.findTempsGreaterThen(-2.0);
+
+        assertEquals(expAvg, actualAvg, 0.00001);
+        assertEquals(expDev, actualDev, 0.00001);
+        assertEquals(expMin, actualMin, 0.00001);
+        assertEquals(expMax, actualMax, 0.00001);
+        assertEquals(expClosestToZero, actualClosestToZero, 0.00001);
+        assertEquals(expClosestToValue, actualClosestToValue, 0.00001);
+        assertArrayEquals(expLessThan, actualLessThan, 0.00001);
+        assertArrayEquals(expGreaterThan, actualGreaterThan, 0.00001);
+    }
 }
